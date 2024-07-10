@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="{{str_replace('_','-',app()->getLocale())}}">
 <head>
@@ -38,52 +39,35 @@
             </div>
 
             <div class="card card-primary" style="background: #270432; color:#fff; border:none;">
-              <div class="card-header"><h4>Acesso Adminstrativo</h4></div>
-
+              <div class="card-header"><h4>Recuperar  Senha</h4></div>
+                @if(session('status'))
+                <p class="alert alert-warning">
+                    {{session('status')}}          
+                </p>
+                @endif
               <div class="card-body">
-                <form method="POST" action="{{route('login')}}"  class="needs-validation" novalidate="" >
+                <form action="{{ route('password.email') }}" method="POST"  class="needs-validation" novalidate="" >
                     @csrf
                   <div class="form-group">
                  
-                    <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus placeholder="Digite seu e-mail" value="{{old('email')}}">
-                    @if($errors->has('email'))
-                    <div class="invalid-feedback">
+                    <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus placeholder="Digite seu e-mail de recuperação" value="{{old('email')}}">
+                    @if($errors->get('email'))
+                    <div class="alert alert-warning">
                         {{$errors->first('email')}}
                     </div>
                     @endif
                   </div>
 
-                  <div class="form-group">
-                    <div class="d-block">
-                    
-                      <div class="float-right">
-                        @if(Route::has('admin.forgot'))
-                        <a href="{{route('admin.forgot')}}" class="text-small" style="color: #fff">
-                          Esqueceu sua senha?
-                        </a>
-                        @endif
-                      </div>
-                    </div>
-                    <input id="password" type="password" class="form-control" name="password" tabindex="2" required placeholder="Digite sua senha" value="{{old('password')}}">
-                   @if($errors->has('password'))
-                   <div class="invalid-feedback">
-                    {{$errors->first('password')}}
-                   </div>
-                   @endif
-                  </div>
-
-                  <div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
-                      <label class="custom-control-label" for="remember-me">Manter conectado</label>
-                    </div>
-                  </div>
+                 
 
                   <div class="form-group">
                     <button type="submit" class="btn btn-warning btn-lg btn-block" style="color: #000" tabindex="4">
-                      Entrar
+                      Recuperar
                     </button>
                   </div>
+                  <p style="text-align: center;">
+                    <a href="{{route('admin.login')}}" style="color: #fff;">Voltar para o login</a>
+                  </p>
                 </form>
                 
               </div>
@@ -117,3 +101,4 @@
   <script src="{{asset('backend/assets/js/custom.js')}}"></script>
 </body>
 </html>
+

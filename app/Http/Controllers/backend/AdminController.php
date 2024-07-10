@@ -17,4 +17,8 @@ class AdminController extends Controller
     {
         return view('admin/auth/login');
     }
+    public function forgot()
+    {
+        return view('admin/auth/forgot-password');
+    }
 }
