@@ -21,26 +21,36 @@
                 </div>
             @endif
           <div class="card">
-            <form method="post" action="{{route('admin.profile.update')}}" class="needs-validation" novalidate="">
+            <form method="post" action="{{route('admin.profile.update')}}" class="needs-validation" novalidate="" enctype="multipart/form-data">
                 @csrf
               <div class="card-header">
                 <h4>Editar Perfil</h4>
               </div>
               <div class="card-body">
-                  <div class="row">                               
+                  <div class="row">  
+                    <div class="form-group col-12">
+                        <div class="mb-3">
+                            @if(Auth::user()->image !== null)
+                            <img src="{{asset(Auth::user()->image)}}" class=" img-fluid rounded-circle" style="width: 80px; height: auto; object-fit: cover;" alt="{{Auth::user()->name}}">
+                            @else
+                            <img src="{{asset('backend/assets/img/avatar/avatar-1.png')}}" class=" img-fluid rounded-circle" style="width: 80px; height: auto; object-fit: cover;" alt="{{Auth::user()->name}}">
+                            @endif
+                        </div>
+                        <label>Foto de Perfil</label>
+                        <input type="file" name="image" class="form-control"    accept="image/*">
+                       
+                      </div>                             
                     <div class="form-group col-md-6 col-12">
                       <label>Nome</label>
-                      <input type="text" class="form-control" name="name" value="{{Auth::user()->name}}" required="">
-                      <div class="invalid-feedback">
-                        Please fill in the first name
-                      </div>
+                      <input type="text" class="form-control" name="name" 
+                      value="{{Auth::user()->name}}" required="">
+                     
                     </div>
                     <div class="form-group col-md-6 col-12">
                       <label>E-mail</label>
-                      <input type="email" class="form-control" name="email" value="{{Auth::user()->email}}" required="">
-                      <div class="invalid-feedback">
-                        Please fill in the last name
-                      </div>
+                      <input type="email" class="form-control" name="email" 
+                      value="{{Auth::user()->email}}" required="">
+                    
                     </div>
                   </div>
                 
