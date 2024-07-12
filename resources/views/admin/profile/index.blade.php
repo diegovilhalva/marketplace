@@ -10,8 +10,6 @@
       </div>
     </div>
     <div class="section-body">
-  
-
       <div class="row mt-sm-4">
       
         <div class="col-12 col-md-12 col-lg-7">
@@ -53,8 +51,48 @@
                     
                     </div>
                   </div>
-                
-                  
+              </div>
+              <div class="card-footer text-right">
+                <button class="btn btn-primary" type="submit">Atualizar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-12 col-lg-7">
+          @if ($errors->any())
+            @foreach ($errors->all() as $error)
+            <div class="alert alert-danger">
+              {{$error}}
+          </div>
+            @endforeach   
+          @endif
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{session('success')}}
+                </div>
+            @endif
+          <div class="card">
+            <form method="post" action="{{route('admin.profile.password')}}" class="needs-validation" novalidate="" enctype="multipart/form-data">
+                @csrf
+              <div class="card-header">
+                <h4>Atualizar Senha</h4>
+              </div>
+              <div class="card-body">
+                  <div class="row">  
+                    <div class="form-group col-12">
+                      <label>Senha Atual</label>
+                      <input type="password" name="current_password" placeholder="Digite sua senha atual" class="form-control">
+                    </div>      
+                    <div class="form-group col-12">
+                      <label>Nova Senha</label>
+                      <input type="password" name="password" placeholder="Digite sua nova senha" class="form-control">
+                    </div>
+                    <div class="form-group col-12">
+                      <label>Confirme sua senha</label>
+                      <input type="password" name="password_confirmation" placeholder="Digite sua nova senha novamente" class="form-control">
+                    </div>
+                  </div>
               </div>
               <div class="card-footer text-right">
                 <button class="btn btn-primary" type="submit">Atualizar</button>
@@ -64,6 +102,5 @@
         </div>
       </div>
     </div>
-  </section>
-
+</section>
 @endsection
