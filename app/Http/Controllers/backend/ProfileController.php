@@ -42,7 +42,9 @@ class ProfileController extends Controller
 
         $user->save();
 
-        return redirect()->back()->with('success','Perfil atualizado com sucesso!');
+        flash()->success('Perfil atualizado com sucesso!');
+        return redirect()->back();
+
     }
 
     public function updatePassword(Request $request)
@@ -54,7 +56,7 @@ class ProfileController extends Controller
         $request->user()->update([
             'password' => bcrypt($request->password)
         ]);
-
-        return redirect()->back()->with('success','Senha alterada com sucesso!');
+        flash()->success('Senha alterada com sucesso!');
+        return redirect()->back();
     }
 }

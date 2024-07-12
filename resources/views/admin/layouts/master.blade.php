@@ -75,6 +75,14 @@
   <!-- Template JS File -->
   <script src="{{asset('backend/assets/js/scripts.js')}}"></script>
   <script src="{{asset('backend/assets/js/custom.js')}}"></script>
-  
+  <script>
+     @if ($errors->any())
+            @foreach ($errors->all() as $error)
+            @php
+              flash()->error($error);
+            @endphp
+            @endforeach   
+      @endif
+  </script>
 </body>
 </html>

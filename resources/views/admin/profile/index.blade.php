@@ -13,11 +13,7 @@
       <div class="row mt-sm-4">
       
         <div class="col-12 col-md-12 col-lg-7">
-            @if(session('success'))
-                <div class="alert alert-success">
-                    {{session('success')}}
-                </div>
-            @endif
+            
           <div class="card">
             <form method="post" action="{{route('admin.profile.update')}}" class="needs-validation" novalidate="" enctype="multipart/form-data">
                 @csrf
@@ -60,18 +56,9 @@
         </div>
 
         <div class="col-12 col-md-12 col-lg-7">
-          @if ($errors->any())
-            @foreach ($errors->all() as $error)
-            <div class="alert alert-danger">
-              {{$error}}
-          </div>
-            @endforeach   
-          @endif
-            @if(session('success'))
-                <div class="alert alert-success">
-                    {{session('success')}}
-                </div>
-            @endif
+         
+            
+           
           <div class="card">
             <form method="post" action="{{route('admin.profile.password')}}" class="needs-validation" novalidate="" enctype="multipart/form-data">
                 @csrf
